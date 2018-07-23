@@ -1,0 +1,6 @@
+.terraform
+.idea
+terraform.tfstate
+terraform.tfstate.backup
+.vpc.tf.swp
+terraform.tfvars
