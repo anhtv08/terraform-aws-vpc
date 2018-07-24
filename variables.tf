@@ -12,8 +12,12 @@ variable "amis" {
     type = "map"
     description = "AMIs by region"
     default = {
-        ap-southeast-1 = "ami-f1810f86" # ubuntu 14.04 LTS
+        ap-southeast-1 = "ami-ed838091" # Amazon Linux AMI 2018.03.0 (HVM),
     }
+}
+variable "nat_aim" {
+    description = "Nat aim"
+    default = "ami-018c3062"
 }
 
 variable "vpc_cidr" {
@@ -29,4 +33,12 @@ variable "public_subnet_cidr" {
 variable "private_subnet_cidr" {
     description = "CIDR for the Private Subnet"
     default = "10.0.1.0/24"
+}
+variable "instance_type" {
+    description = "aws provision instance type"
+    default = "t2.micro"
+}
+variable "availability_zone" {
+    description = " availablity  zone of ap-southeast-1 region"
+    default = "ap-southeast-1a"
 }

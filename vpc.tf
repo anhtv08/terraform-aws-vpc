@@ -75,9 +75,9 @@ resource "aws_security_group" "nat" {
 }
 
 resource "aws_instance" "nat" {
-    ami = "ami-30913f47" # this is a special ami preconfigured to do NAT
-    availability_zone = "eu-west-1a"
-    instance_type = "m1.small"
+    ami = "${var.nat_aim}" # this is a special ami preconfigured to do NAT
+    availability_zone = "${var.availability_zone}"
+    instance_type = "t2.micro"
     key_name = "${var.aws_key_name}"
     vpc_security_group_ids = ["${aws_security_group.nat.id}"]
     subnet_id = "${aws_subnet.eu-west-1a-public.id}"
@@ -101,7 +101,7 @@ resource "aws_subnet" "eu-west-1a-public" {
     vpc_id = "${aws_vpc.default.id}"
 
     cidr_block = "${var.public_subnet_cidr}"
-    availability_zone = "eu-west-1a"
+    availability_zone = "${var.availability_zone}"
 
     tags {
         Name = "Public Subnet"
@@ -133,7 +133,8 @@ resource "aws_subnet" "eu-west-1a-private" {
     vpc_id = "${aws_vpc.default.id}"
 
     cidr_block = "${var.private_subnet_cidr}"
-    availability_zone = "eu-west-1a"
+    availability_zone = "${var.availability_zone}"
+
 
     tags {
         Name = "Private Subnet"
